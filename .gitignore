@@ -1,0 +1,8 @@
+*.exe
+*.suo
+*.user
+lib/packages/*
+lib/D2L.Extensibility.AuthSdk.RestSharp/bin/*
+lib/D2L.Extensibility.AuthSdk.RestSharp/obj/*
+lib/D2L.Extensibility.AuthSdk.RestSharp.Tests/bin/*
+lib/D2L.Extensibility.AuthSdk.RestSharp.Tests/obj/*
