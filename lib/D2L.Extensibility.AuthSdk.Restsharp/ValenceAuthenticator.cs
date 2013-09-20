@@ -5,7 +5,7 @@ using RestSharp;
 
 namespace D2L.Extensibility.AuthSdk.Restsharp {
 
-	public sealed class ValenceAuthenticator : IAuthenticator {
+	public sealed class ValenceAuthenticator : RestSharp.IAuthenticator {
 
 		private readonly ID2LUserContext m_context;
 

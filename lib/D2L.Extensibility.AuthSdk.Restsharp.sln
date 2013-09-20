@@ -3,6 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2L.Extensibility.AuthSdk.Restsharp", "D2L.Extensibility.AuthSdk.Restsharp\D2L.Extensibility.AuthSdk.Restsharp.csproj", "{73526844-BB6D-4BE9-B4CD-852BE1A1B393}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2L.Extensibility.AuthSdk.Restsharp.Tests", "D2L.Extensibility.AuthSdk.Restsharp.Tests\D2L.Extensibility.AuthSdk.Restsharp.Tests.csproj", "{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0109CF9B-9DD4-474D-A6F9-E2CB70546555}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +22,10 @@ Global
 		{73526844-BB6D-4BE9-B4CD-852BE1A1B393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73526844-BB6D-4BE9-B4CD-852BE1A1B393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73526844-BB6D-4BE9-B4CD-852BE1A1B393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

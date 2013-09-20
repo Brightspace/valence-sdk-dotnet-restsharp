@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73526844-BB6D-4BE9-B4CD-852BE1A1B393}</ProjectGuid>
+    <ProjectGuid>{A484A34C-FD1B-4EC1-BD11-B838CB577C1F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>D2L.Extensibility.AuthSdk.Restsharp</RootNamespace>
-    <AssemblyName>D2L.Extensibility.AuthSdk.Restsharp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>D2L.Extensibility.AuthSdk.Restsharp.Tests</RootNamespace>
+    <AssemblyName>D2L.Extensibility.AuthSdk.Restsharp.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -36,20 +35,35 @@
     <Reference Include="D2L.Extensibility.AuthSdk">
       <HintPath>..\packages\D2L.Extensibility.AuthSdk.1.0.6\lib\net40\D2L.Extensibility.AuthSdk.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.2.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ValenceAuthenticator.cs" />
+    <Compile Include="AuthenticatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\D2L.Extensibility.AuthSdk.Restsharp\D2L.Extensibility.AuthSdk.Restsharp.csproj">
+      <Project>{73526844-BB6D-4BE9-B4CD-852BE1A1B393}</Project>
+      <Name>D2L.Extensibility.AuthSdk.Restsharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
