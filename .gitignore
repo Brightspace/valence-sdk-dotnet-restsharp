@@ -1,6 +1,7 @@
 *.exe
 *.suo
 *.user
+*.DotSettings
 lib/packages/*
 lib/D2L.Extensibility.AuthSdk.RestSharp/bin/*
 lib/D2L.Extensibility.AuthSdk.RestSharp/obj/*

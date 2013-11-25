@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using RestSharp;
 
@@ -37,45 +38,10 @@ namespace D2L.Extensibility.AuthSdk.Restsharp {
 			return method;
 		}
 
-		private IEnumerable<Tuple<string,string>> CreateAuthenticationTokens( 
-				string pathAndQuery, 
-				string method 
-			) {
-
-			var fullUri = m_context.CreateAuthenticatedUri( pathAndQuery, method );
-
-			var baseAndQuery = fullUri.Query.Split( '?' );
-
-			if( baseAndQuery.Length != 2 ) {
-				yield break;
-			}
-
-			var queryParameters = baseAndQuery[1].Split( '&' );
-
-			foreach( var parameter in queryParameters ) {
-
-				var tokens = parameter.Split( '=' );
-				var key = tokens[0];
-				var value = tokens[1];
-
-				if( key.StartsWith( "x_a" ) || 
-					key.StartsWith( "x_b" ) || 
-					key.StartsWith( "x_c" ) || 
-					key.StartsWith( "x_d" ) || 
-					key.StartsWith( "x_t" ) ) {
-
-					yield return new Tuple<string, string>( key, value );
-				}
-			}
-		}
-
 		private string CreateAuthQueryString( IEnumerable<Tuple<string, string>> tokens  ) {
 
-			var queryParametersList = new List<string>();
-
-			foreach( var token in tokens ) {
-				queryParametersList.Add( string.Format( "{0}={1}", token.Item1, token.Item2 ) );
-			}
+			var queryParametersList = 
+				tokens.Select( token => string.Format( "{0}={1}", token.Item1, token.Item2 ) );
 
 			var authQueryParameters = string.Join( "&", queryParametersList );
 
@@ -88,11 +54,11 @@ namespace D2L.Extensibility.AuthSdk.Restsharp {
 
 			string method = AdaptMethod( request.Method );
 
-			var tokens = CreateAuthenticationTokens( uri.PathAndQuery, method );
+			var tokens = m_context.CreateAuthenticatedTokens(uri, method);
 
 			var authQueryParameters = CreateAuthQueryString( tokens );
 
-			var url = uri.ToString();
+			string url = uri.ToString();
 
 			// manually set the resource url to work around RestSharp not letting you add query parameters 
 			// once you've added a body to the HTTP request

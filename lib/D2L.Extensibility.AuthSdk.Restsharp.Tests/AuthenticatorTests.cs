@@ -17,12 +17,12 @@ namespace D2L.Extensibility.AuthSdk.Restsharp.Tests {
 
 		const string BASE_ROUTE = "http://someserver.com:44444";
 
-		private static readonly List<string> AUTH_TOKENS = new List<string> {
-																		"x_a=aaaa" ,
-																		"x_b=bbbb" ,
-																		"x_c=cccc" ,
-																		"x_d=dddd" ,
-																		"x_t=tttt" 
+		private static readonly List<Tuple<string,string>> AUTH_TOKENS = new List<Tuple<string, string>> {
+																		new Tuple<string, string>("x_a","aaaa"),
+																		new Tuple<string, string>("x_b","bbbb"),
+																		new Tuple<string, string>("x_c","cccc"),
+																		new Tuple<string, string>("x_d","dddd"),
+																		new Tuple<string, string>("x_t","tttt"),
 																	};
 
 		[SetUp]
@@ -33,21 +33,8 @@ namespace D2L.Extensibility.AuthSdk.Restsharp.Tests {
 			string authQueryParameters = string.Join( "&", AUTH_TOKENS );
 
 			mockUserContext.Setup(
-				ctxt => ctxt.CreateAuthenticatedUri( It.IsAny<string>(), It.IsAny<string>() ) )
-				.Returns( 
-					( string pathAndQuery, string method ) => {
-
-						bool hasQueryParameters = pathAndQuery.IndexOf( '?' ) != -1;
-
-						string fullUrl = 
-							BASE_ROUTE +
-							pathAndQuery + 
-							( hasQueryParameters ? "&" : "?" ) + 
-							authQueryParameters;
-
-						return new Uri( fullUrl );
-					}
-				);
+				ctxt => ctxt.CreateAuthenticatedTokens( It.IsAny<Uri>(), It.IsAny<string>() ) )
+				.Returns( ( Uri fullUrl, string method ) => AUTH_TOKENS );
 
 			m_authenticator = new ValenceAuthenticator( mockUserContext.Object );
 		}
@@ -56,7 +43,9 @@ namespace D2L.Extensibility.AuthSdk.Restsharp.Tests {
 
 			bool hasQueryParameters = pathAndQuery.IndexOf( '?' ) != -1;
 
-			string authQueryParameters = string.Join( "&", AUTH_TOKENS );
+			var tokens = AUTH_TOKENS.Select( token => token.Item1 + "=" + token.Item2 );
+
+			string authQueryParameters = string.Join( "&", tokens );
 
 			string fullPath = 
 				pathAndQuery + 
@@ -67,7 +56,7 @@ namespace D2L.Extensibility.AuthSdk.Restsharp.Tests {
 		}
 
 		[Test]
-		public void Authenticate_NoQueryParameters_ShouldSucceed(
+		public void Authenticate_QueryParameters_ShouldSucceed(
 				[Values(
 					"/api/versions/", 
 					"/api/collection/resource/?sort=asc", 
