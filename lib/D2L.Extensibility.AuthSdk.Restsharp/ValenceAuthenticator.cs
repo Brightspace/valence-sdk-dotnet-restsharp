@@ -54,10 +54,6 @@ namespace D2L.Extensibility.AuthSdk.Restsharp {
 
 			string method = AdaptMethod( request.Method );
 
-			var fullUri = m_context.CreateAuthenticatedUri( uri, method );
-
-			var fullPathUri = m_context.CreateAuthenticatedUri( uri.AbsolutePath, method );
-
 			var tokens = m_context.CreateAuthenticatedTokens(uri, method);
 
 			var authQueryParameters = CreateAuthQueryString( tokens );
