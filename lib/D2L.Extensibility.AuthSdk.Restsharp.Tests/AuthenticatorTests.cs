@@ -73,7 +73,39 @@ namespace D2L.Extensibility.AuthSdk.Restsharp.Tests {
 
 			string expectedUrl = GenerateExepctedUrl( pathAndQuery );
 
-			Assert.AreEqual( expectedUrl, request.Resource );
+			Assert.AreEqual( expectedUrl, client.BuildUri(request).PathAndQuery );
+		}
+		
+		[Test]
+		public void Authenticate_UrlParameters_ShouldSucceed( ) {
+			const string ROUTE = "/d2l/api/{foo}/{bar}";
+
+			var client = new RestClient( BASE_ROUTE );
+			var request = new RestRequest( ROUTE );
+			request.AddUrlSegment( "foo", "abc" );
+			request.AddUrlSegment( "bar", "xyz" );
+
+			m_authenticator.Authenticate( client, request );
+
+			string expectedUrl = GenerateExepctedUrl( "/d2l/api/abc/xyz" );
+			Assert.AreEqual( expectedUrl, client.BuildUri(request).PathAndQuery );
+		}
+
+		[Test]
+		public void Authenticate_UrlAndQueryParameters_ShouldSucceed( ) {
+			const string ROUTE = "/d2l/api/lp/{version}/users/";
+			const string VERSION = "1.4";
+
+			var client = new RestClient( BASE_ROUTE );
+			var request = new RestRequest( ROUTE );
+			request.AddUrlSegment( "version", VERSION );
+			request.AddParameter( "userName", "user name" );
+
+			m_authenticator.Authenticate( client, request );
+
+			string expectedUrl = GenerateExepctedUrl( ROUTE.Replace( "{version}", VERSION ) + "?userName=user%20name" );
+
+			Assert.AreEqual( expectedUrl, client.BuildUri(request).PathAndQuery );
 		}
 	}
 }

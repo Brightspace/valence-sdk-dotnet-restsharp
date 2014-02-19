@@ -65,13 +65,7 @@ namespace D2L.Extensibility.AuthSdk.Restsharp {
 			bool hasQueryParameters = url.IndexOf( '?' ) != -1;
 
 			if( hasQueryParameters ) {
-
-				var resource = uri.PathAndQuery;
-
-				var index = resource.IndexOf( request.Resource, System.StringComparison.Ordinal );
-
-				// need to trim starting resource
-				request.Resource = resource.Substring( index, resource.Length - index );
+				request.Resource = uri.PathAndQuery;
 				request.Resource += "&" + authQueryParameters;
 				request.Parameters.Clear();
 			} else {
