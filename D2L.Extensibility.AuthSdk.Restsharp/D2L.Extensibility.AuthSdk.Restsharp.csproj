@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+
+    <Title>D2L.Extensibility.AuthSdk.RestSharp</Title>
+    <Description>D2L Valence RestSharp authenticator class library for C#/.NET.</Description>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="D2L.Extensibility.AuthSdk" />
+    <PackageReference Include="RestSharp" />
+  </ItemGroup>
+</Project>
