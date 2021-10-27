@@ -1,6 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: nuget
-    directory: /
+    directory: /lib
     schedule:
       interval: "daily"
