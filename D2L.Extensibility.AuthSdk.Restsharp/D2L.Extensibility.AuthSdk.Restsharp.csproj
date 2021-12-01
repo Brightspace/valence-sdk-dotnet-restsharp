@@ -8,6 +8,11 @@
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
+
+    <PackageId>D2L.Extensibility.AuthSdk.Restsharp</PackageId>
+    <Version>1.2.0</Version>
+    <Authors>D2L</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
